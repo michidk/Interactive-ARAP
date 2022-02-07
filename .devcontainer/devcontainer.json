@@ -1,0 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.1/containers/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+
+	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+	"dockerFile": "../Dockerfile",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"vadimcn.vscode-lldb",
+		"ms-vscode.cpptools-extension-pack"
+	],
+
+    "containerEnv": {
+        "DISPLAY": "host.docker.internal:0.0",
+		"QT_X11_NO_MITSHM": "1",
+		"QT_GRAPHICSSYSTEM": "native",
+		"LIBGL_ALWAYS_INDIRECT": "0"
+    },
+
+    "mounts": [
+		"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
+	],
+
+	"runArgs": [
+        "--net", "host"
+	],
+}
